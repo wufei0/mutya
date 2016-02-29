@@ -1,0 +1,55 @@
+<?php
+
+	if (session_status() == PHP_SESSION_NONE) 
+	{
+	    session_start();
+	}
+
+	if(!isset($_SESSION['judgename']))
+	{
+			session_destroy();
+			header('Location:index.php');
+			exit();
+	}
+
+
+		include('connection.php');
+	  global $DB_HOST, $DB_USER,$DB_PASS, $BD_TABLE;
+    $con=mysqli_connect($DB_HOST,$DB_USER,$DB_PASS,$BD_TABLE);
+    
+	$sqlQuery='SELECT * FROM tblcandidate ORDER BY PK_NUMBER ASC';
+	
+	$result=mysqli_query($con,$sqlQuery);
+	
+	echo "<table border='1' width='100%'>";
+	echo "
+					<tr>
+						<th class='width'>Candidate</th>
+						<th>Swimsuit</th>
+						<th>Evening Gown</th>
+						<th>Casual Interview</th>
+						<th>Average</th>
+						<th>Rank</th>
+          </tr>
+       ";
+	while($recordSet=mysqli_fetch_array($result))
+  {
+  	echo "
+  	<tr>
+          									<td class='width'><a href='#'>".$recordSet['pk_number'] .". ". $recordSet['municipality'] .".</a></td>
+          									<td>12</td>
+          									<td>12</td>
+          									<td>12</td>
+          									<td>12</td>
+          									<td>12</td>
+          							</tr>
+  	
+  		";
+  }
+	echo "</table>";
+
+
+
+
+
+?>
