@@ -26,15 +26,15 @@ header {
 	margin-top:4px;
 }
 
-/*#banner {
-	max-width: 1287px;
-  margin: 0 auto;
-  padding-left: 220px;
- }*/
- 
 #banner {
 	max-width: 1287px;
+  margin: 0 auto;
+  padding-left: 200px;
  }
+ 
+/*#banner {
+	max-width: 1287px;
+ }*/
 
 /*#banner {
 	max-width:860px;
@@ -70,7 +70,7 @@ header {
 }
 
 #logo {
-	width:30%;
+	width:50%;
 	float:left;
 }
 
@@ -81,7 +81,7 @@ header {
 
 #topic {
 	float:right;
-	width:70%;
+	width:50%;
 }
 
 #navbar {
@@ -324,14 +324,14 @@ img.Image {
 	margin:0;
 	padding-top:10px;
 	padding-bottom:3px;
-	font-size:18px;
+	font-size:19px;
 	font-weight:bold;
 	color:#a94442;
 }
 
 .listname h4 {
 	margin:0;
-	font-size:18px;
+	font-size:16px;
 	font-weight:600;
 }
 

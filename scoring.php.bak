@@ -46,8 +46,8 @@
 						echo "<table border='1' width='100%'>";
 						echo "
 										<tr>
-											<th class='width'>Candidate</th>
-											<th><a href='#' onclick='updateFromTemp()'>Casual Interview</a></th>
+											<th class='width'>Mutya No</th>
+											<th class='navTH'><a href='#' onclick='updateFromTemp()'>Casual Interview</a></th>
 											<th>Swimsuit</th>
 											<th>Evening Gown</th>
 											<th>Average</th>
@@ -88,9 +88,9 @@
 											echo "<table border='1' width='100%'>";
 											echo "
 															<tr>
-																<th class='width'>Candidate</th>
-																<th>Casual Interview</a></th>
-																<th><a href='#' onclick='updateFromTemp()'>Swimsuit</th>
+																<th class='width'>Mutya No</th>
+																
+																<th class='navTH'><a href='#' onclick='updateFromTemp()'>Swimsuit</th>
 																<th>Evening Gown</th>
 																<th>Average</th>
 																<th>Rank</th>
@@ -98,8 +98,9 @@
 										       ";
 										       
 										       $sql="SELECT score,pk_number FROM tblscore JOIN tblcandidate on tblscore.fk_tblcandidate_pknumber = tblcandidate.pk_number
-															WHERE fk_category_pkcategory = 'Casual Interview' 
-															 AND fk_tbljudge_pkname = '".$_SESSION['username']."' ORDER BY score DESC";
+															WHERE  fk_tbljudge_pkname = '".$_SESSION['username']."' ORDER BY score DESC";
+															 
+															 
 															 
 										  	$makeArrayRanks=makeArrayRank($sql);
 											while($recordSet=mysqli_fetch_array($result))
@@ -107,7 +108,7 @@
 										  	
 										  	
 										  	$sql="SELECT score,pk_number FROM tblscore JOIN tblcandidate on tblscore.fk_tblcandidate_pknumber = tblcandidate.pk_number
-															WHERE fk_tblcandidate_pknumber = ".$recordSet['pk_number']." AND fk_category_pkcategory = 'Casual Interview' 
+															WHERE fk_tblcandidate_pknumber = ".$recordSet['pk_number']." 
 															 AND fk_tbljudge_pkname = '".$_SESSION['username']."' ";
 										  	
 										  	
@@ -116,7 +117,7 @@
 										  	echo "
 										  			<tr onclick='getPhoto(this.id)' id=".$recordSet['pk_number'].">
 						  									<td   class='width'><a href='#'>".$recordSet['pk_number'] .". ". $recordSet['municipality'] ."</a></td>
-						  									<td> <a href='#'>".$recordResult[0]." </a></td>
+						  								
 						  									<td> <input type='text' onblur='tempSave(this.value,".$recordSet['pk_number'].")'> </td>
 						  									<td> - </td>
 						  									<td> <a href='#'>".$recordResult[0]." </a> </td>
@@ -125,7 +126,7 @@
 										  	
 										  		";
 										 	}
-											echo "<tr><td></td><td></td><td><input class='btn btn-primary' type='button' value='submit' onclick='submitMe()'></td></tr>";
+											echo "<tr><td></td><td><input class='btn btn-primary' type='button' value='submit' onclick='submitMe()'></td></tr>";
 											echo "</table>";
 						break;
 					
@@ -146,10 +147,10 @@
 											echo "<table border='1' width='100%'>";
 											echo "
 															<tr>
-																<th class='width'>Candidate</th>
-																<th>Casual Interview</a></th>
+																<th class='width'>Mutya No</th>
+																
 																<th>Swimsuit</th>
-																<th><a href='#' onclick='updateFromTemp()'>Evening Gown</th>
+																<th class='navTH'><a href='#' onclick='updateFromTemp()'>Evening Gown</th>
 																<th>Average</th>
 																<th>Rank</th>
 										          </tr>
@@ -179,11 +180,11 @@
 							  	mysqli_data_seek($results, 1);
 							  	$recordResult = mysqli_fetch_row($results);
 							  	$swimsuit=$recordResult[0];
-							  	$averageScore=number_format(($casualInterview+$swimsuit)/2,2);
+							  	$averageScore=number_format(($casualInterview+$swimsuit),2);
 							  	echo "
 							  			<tr onclick='getPhoto(this.id)' id=".$recordSet['pk_number'].">
 			  									<td   class='width'><a href='#'>".$recordSet['pk_number'] .". ". $recordSet['municipality'] ."</a></td>
-			  									<td> <a href='#'>".$casualInterview." </a></td>
+			  									
 			  									<td> <a href='#'>".$swimsuit." </a> </td>
 			  									<td> <input type='text' onblur='tempSave(this.value,".$recordSet['pk_number'].")'> </td>
 			  									<td> <a href='#'>".$averageScore." </a> </td>
@@ -194,7 +195,7 @@
 							  }
 							
 								
-											echo "<tr><td></td><td></td><td></td><td><input class='btn btn-primary' type='button' value='submit' onclick='submitMe()'></td></tr>";
+											echo "<tr><td></td><td></td><td><input class='btn btn-primary' type='button' value='submit' onclick='submitMe()'></td></tr>";
 											echo "</table>";
 						break;
 						
@@ -220,8 +221,8 @@
 											echo "<table border='1' width='100%'>";
 											echo "
 															<tr>
-																<th class='width'>Candidate</th>
-																<th><a href='#' onclick='updateFromTemp()'>Casual Interview</th>
+																<th class='width'>Mutya No</th>
+																<th class='navTH'><a href='#' onclick='updateFromTemp()'>Question and Answer</th>
 																<th>Rank</th>
 										          </tr>
 										       ";
@@ -278,8 +279,8 @@
 											echo "<table border='1' width='100%'>";
 											echo "
 															<tr>
-																<th class='width'>Candidate</th>
-																<th><a href='#' onclick='updateFromTemp()'>Casual Interview</th>
+																<th class='width'>Mutya No</th>
+																<th> class='navTH'><a href='#' onclick='updateFromTemp()'>Question and Answer</th>
 																<th>Rank</th>
 										          </tr>
 										       ";
@@ -337,8 +338,8 @@
           					<div class='listname'>
           							<h3>".$recordSet['municipality']."</h3>
           							<h4>".$recordSet['name']."</h4>
-          							<p>".$recordSet['age']." years of age</p>
-          							<p>36 - 24 - 38</p>
+          							<p>".$recordSet['age']." years old</p>
+          							<!--<p>36 - 24 - 38</p>-->
           					</div>
           					
           					";
@@ -382,8 +383,8 @@
 								echo "<table border='1' width='100%'>";
 								echo "
 												<tr>
-													<th class='width'>Candidate</th>
-													<th><a href='#' onclick='updateFromTemp()'>Casual Interview</a></th>
+													<th class='width'>Mutya No</th>
+													<th class='navTH'><a href='#' onclick='updateFromTemp()'>Question and Answer</a></th>
 													<th>Swimsuit</th>
 													<th>Evening Gown</th>
 													<th>Average</th>
@@ -449,9 +450,9 @@
 											echo "<table border='1' width='100%'>";
 											echo "
 															<tr>
-																<th class='width'>Candidate</th>
-																<th>Casual Interview</a></th>
-																<th><a href='#' onclick='updateFromTemp()'>Swimsuit</th>
+																<th class='width'>Mutya No</th>
+																
+																<th class='navTH'><a href='#' onclick='updateFromTemp()'>Swimsuit</th>
 																<th>Evening Gown</th>
 																<th>Average</th>
 																<th>Rank</th>
@@ -484,7 +485,7 @@
 													  	echo "
 													  			<tr onclick='getPhoto(this.id)' id=".$recordSet['pk_number'].">
 									  									<td   class='width'><a href='#'>".$recordSet['pk_number'] .". ". $recordSet['municipality'] ."</a></td>
-									  									<td> <a href='#'>".$sqlGetPrevScoresRecordset[0]." </a></td>
+									  									
 									  									<td> <input type='text' onblur='tempSave(this.value,".$recordSet['pk_number'].")' value='".$recordSets[0]."'> </td>
 									  									<td> - </td>
 									  									<td> <a href='#'>".$sqlGetPrevScoresRecordset[0]." </a></td> </td>
@@ -500,7 +501,7 @@
 											  			echo "
 													  			<tr onclick='getPhoto(this.id)' id=".$recordSet['pk_number'].">
 									  									<td   class='width'><a href='#'>".$recordSet['pk_number'] .". ". $recordSet['municipality'] ."</a></td>
-									  									<td> <a href='#'>".$sqlGetPrevScoresRecordset[0]."</a> </td>
+									  									
 									  									<td> <input type='text' onblur='tempSave(this.value,".$recordSet['pk_number'].")' value=''> </td>
 									  									<td> - </td>
 									  									<td> <a href='#'>".$sqlGetPrevScoresRecordset[0]." </a></td> </td>
@@ -525,10 +526,10 @@
 											echo "<table border='1' width='100%'>";
 											echo "
 															<tr>
-																<th class='width'>Candidate</th>
-																<th>Casual Interview</a></th>
+																<th class='width'>Mutya No</th>
+															
 																<th>Swimsuit</th>
-																<th><a href='#' onclick='updateFromTemp()'>Evening Gown</th>
+																<th class='navTH'><a href='#' onclick='updateFromTemp()'>Evening Gown</th>
 																<th>Average</th>
 																<th>Rank</th>
 										          </tr>
@@ -563,14 +564,14 @@
 													$sqlGetPrevScoresResults = mysqli_fetch_row($sqlGetPrevScoresResult);		
 													$swimsuit=$sqlGetPrevScoresResults[0];
 															
-													$prevScoreAverage=number_format(($casualInterview+$swimsuit)/2,2);
+													$prevScoreAverage=number_format(($casualInterview+$swimsuit),2);
 											  	
 											  		if 	($recordSets != null)
 											  		{
 													  	echo "
 													  			<tr onclick='getPhoto(this.id)' id=".$recordSet['pk_number'].">
 									  									<td   class='width'><a href='#'>".$recordSet['pk_number'] .". ". $recordSet['municipality'] ."</a></td>
-									  									<td> <a href='#'>".$casualInterview." </a></td>
+									  									
 									  									<td> <a href='#'>".$swimsuit." </a></td>
 									  									<td> <input type='text' onblur='tempSave(this.value,".$recordSet['pk_number'].")' value='".$recordSets[0]."'>  </td>
 									  									<td> <a href='#'>".$prevScoreAverage." </a></td> </td>
@@ -586,7 +587,7 @@
 											  			echo "
 													  			<tr onclick='getPhoto(this.id)' id=".$recordSet['pk_number'].">
 									  									<td   class='width'><a href='#'>".$recordSet['pk_number'] .". ". $recordSet['municipality'] ."</a></td>
-									  									<td> <a href='#'>".$casualInterview." </a></td>
+									  									
 									  									<td> <a href='#'>".$swimsuit." </a></td>
 									  									<td> <input type='text' onblur='tempSave(this.value,".$recordSet['pk_number'].")' value=''> </td>
 									  									<td> <a href='#'>".$prevScoreAverage." </a></td> </td>
@@ -599,7 +600,7 @@
 											  
 												
 											}
-											echo "<tr><td></td><td></td><td></td><td><input class='btn btn-primary' type='button' value='submit' onclick='submitMe()' /></td></tr>";
+											echo "<tr><td></td><td></td><td><input class='btn btn-primary' type='button' value='submit' onclick='submitMe()' /></td></tr>";
 								echo "</table>";   
 					}
 					
@@ -616,8 +617,8 @@
 											echo "<table border='1' width='100%'>";
 											echo "
 															<tr>
-																<th class='width'>Candidate</th>
-																<th><a href='#' onclick='updateFromTemp()'>Casual Interview</th>
+																<th class='width'>Mutya No</th>
+																<th class='navTH'><a href='#' onclick='updateFromTemp()'>Question and Answer</th>
 																<th>Rank</th>
 										          </tr>
 										       ";
@@ -693,8 +694,8 @@
 											echo "<table border='1' width='100%'>";
 											echo "
 															<tr>
-																<th class='width'>Candidate</th>
-																<th><a href='#' onclick='updateFromTemp()'>Casual Interview</th>
+																<th class='width'>Mutya No</th>
+																<th class='navTH'><a href='#' onclick='updateFromTemp()'>Question and Answer</th>
 																<th>Rank</th>
 										          </tr>
 										       ";
@@ -834,6 +835,21 @@
 					break;
 					
 					
+					case 'help';
+					
+						$sql="UPDATE tbljudge set help=1 WHERE name='".$_POST['judge']."' ";
+										$results=mysqli_query($con,$sql);
+										if  (!$results)
+										{
+												echo false;
+										}
+										else
+										{
+											echo "true";
+										}
+										
+					
+					break;
 					
 					
 		                       
@@ -938,7 +954,7 @@
 								echo "<table border='1' width='100%'>";
 								echo "
 												<tr>
-													<th class='width'>Candidate</th>
+													<th class='width'>Mutya No</th>
 													<th>Casual Interview</a></th>
 													<th>Swimsuit</th>
 													<th>Evening Gown</th>
@@ -992,8 +1008,8 @@
 								echo "<table border='1' width='100%'>";
 								echo "
 												<tr>
-													<th class='width'>Candidate</th>
-													<th>Casual Interview</a></th>
+													<th class='width'>Mutya No</th>
+												
 													<th>Swimsuit</th>
 													<th>Evening Gown</th>
 													<th>Average</th>
@@ -1025,11 +1041,11 @@
 							  	mysqli_data_seek($results, 1);
 							  	$recordResult = mysqli_fetch_row($results);
 							  	$swimsuit=$recordResult[0];
-							  	$averageScore=number_format(($casualInterview+$swimsuit)/2,2);
+							  	$averageScore=number_format(($casualInterview+$swimsuit),2);
 							  	echo "
 							  			<tr onclick='getPhoto(this.id)' id=".$recordSet['pk_number'].">
 			  									<td   class='width'><a href='#'>".$recordSet['pk_number'] .". ". $recordSet['municipality'] ."</a></td>
-			  									<td> <a href='#'>".$casualInterview." </a></td>
+			  									
 			  									<td> <a href='#'>".$swimsuit." </a> </td>
 			  									<td> - </td>
 			  									<td> <a href='#'>".$averageScore." </a> </td>
@@ -1052,8 +1068,8 @@
 								echo "<table border='1' width='100%'>";
 								echo "
 												<tr>
-													<th class='width'>Candidate</th>
-													<th>Casual Interview</a></th>
+													<th class='width'>Mutya No</th>
+													
 													<th>Swimsuit</th>
 													<th>Evening Gown</th>
 													<th>Average</th>
@@ -1094,11 +1110,11 @@
 							  	
 							  	
 							  	$eveningGown=$recordResult[0];
-							  	$averageScore=number_format(($casualInterview+$swimsuit+$eveningGown)/3,2);
+							  	$averageScore=number_format(($casualInterview+$swimsuit+$eveningGown)/2,2);
 							  	echo "
 							  			<tr onclick='getPhoto(this.id)' id=".$recordSet['pk_number'].">
 			  									<td   class='width'><a href='#'>".$recordSet['pk_number'] .". ". $recordSet['municipality'] ."</a></td>
-			  									<td> <a href='#'>".$casualInterview." </a></td>
+			  									
 			  									<td> <a href='#'>".$swimsuit." </a> </td>
 			  									<td> <a href='#'>".$eveningGown." </a> </td>
 			  									<td> <a href='#'>".$averageScore." </a> </td>
@@ -1129,8 +1145,8 @@
 								echo "<table border='1' width='100%'>";
 								echo "
 												<tr>
-													<th class='width'>Candidate</th>
-													<th>Casual Interview</a></th>
+													<th class='width'>Mutya No</th>
+													<th>Question and Answer</a></th>
 													<th>Rank</th>
 							          </tr>
 							       ";
@@ -1179,8 +1195,8 @@
 								echo "<table border='1' width='100%'>";
 								echo "
 												<tr>
-													<th class='width'>Candidate</th>
-													<th>Casual Interview</a></th>
+													<th class='width'>Mutya No</th>
+													<th>Question and Answer</a></th>
 													<th>Rank</th>
 							          </tr>
 							       ";

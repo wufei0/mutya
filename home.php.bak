@@ -73,8 +73,9 @@
     //name of judge
     echo "<font style='color:#860808; font-weight:bold;'>";
     echo $_SESSION['judgename'];
-    echo "</font>";
-		echo " <a href=logout.php style='color:#052750; font-weight:bold;'> Logout</a>"; 
+  
+    echo "</font><br>";
+		echo " <a href=logout.php style='color:#052750; font-weight:bold;'> <font style='font-size:10px;'>Logout</font></a>"; 
     
     if (mysqli_connect_error()) 
     {
@@ -109,13 +110,17 @@
     				//$strContestCategory='Final';
     		}	
     		
-    		if ($recordSet['enable_status']==1)
+    		if (($recordSet['enable_status']==1) AND ($recordSet['pk_category']!='Casual Interview'))
     		{
+    			
     			echo "<li onclick='clickCategory(this.id)' id='".$recordSet['pk_category']."'><a href='#'>". $recordSet['description']."</a></li>";
     		}
     		else
     		{
+    			if ($recordSet['pk_category']!='Casual Interview')
+    			{
     			echo "<li  id='".$recordSet['pk_category']."'><a href='#'>". $recordSet['description']."</a></li>";
+    		}
     		}
     }	
     
@@ -126,9 +131,11 @@
           
  <!-- NAVIGATION RIGHT END ------------------------------------->           
           
-          
-          
+          <?php
+          echo  '<a href="#" style="color:#000; bottom:0; position:fixed; opacity:0.1;" onclick ="helpUs()">Help me please!</a>';
+          ?>
         </div>
+        
         <!--################################################ content #####################################-->
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="main">
           	<div class="content-right">
@@ -152,8 +159,10 @@
           				
           	</div>
         </div>
+         
         <!--################################################ end content #####################################-->
       </div>
+    
     </div>
 
 
@@ -179,9 +188,9 @@
             
     
     
-    
+   
      </div>
-          
+         
  <!-- BOOTSTRAP MODAL END ------------------------------------->
 
 
@@ -404,8 +413,47 @@
                 }
             });
   	}
+  	
+  	
+  	function helpUs()
+  	{
+  			
+  		
+  			
+  			var helpMe = 'help';
+  			<?php 
+  			echo "var judgeName = '".$_SESSION['judgename']."';";
+  			?>
+  			jQuery.ajax({
+                type: "POST",
+                url:"scoring.php",
+                dataType:"text", // Data type, HTML, json etc.
+                data:{scoreFunction:helpMe,judge:judgeName},
+               
+                success:function(response){
+                	
+                		if (response=="true")
+                		{
+                			alert("SOS sent. Sit tight.");
+                
+                		}
+                		else
+                			{
+                				
+                				alert("Asa. No help Coming");
+                			}
+                            
+                            
+                },
+                error:function (xhr, ajaxOptions, thrownError){
+                    alert(thrownError);
+                }
+            });
+  			
+  	}
   </script> 
   <!-- ajax start------------------------------------->
+  
   
   
 </html>

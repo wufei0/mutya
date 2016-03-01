@@ -26,15 +26,15 @@ header {
 	margin-top:4px;
 }
 
-/*#banner {
-	max-width: 1287px;
-  margin: 0 auto;
-  padding-left: 220px;
- }*/
- 
 #banner {
 	max-width: 1287px;
+  margin: 0 auto;
+  padding-left: 200px;
  }
+ 
+/*#banner {
+	max-width: 1287px;
+ }*/
 
 /*#banner {
 	max-width:860px;
@@ -70,7 +70,7 @@ header {
 }
 
 #logo {
-	width:30%;
+	width:50%;
 	float:left;
 }
 
@@ -81,7 +81,7 @@ header {
 
 #topic {
 	float:right;
-	width:70%;
+	width:50%;
 }
 
 #navbar {
@@ -158,6 +158,14 @@ hr {
 
 table {
 	background-color:rgba(252, 248, 227, 0.94);
+}
+
+.navTH a {
+	color:#fff;
+}
+
+.navTH a:hover, a:focus {
+	color:#eee;
 }
 
 .scroll {
