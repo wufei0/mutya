@@ -514,7 +514,7 @@
 											  
 												
 											}
-							echo "<tr><td></td><td></td><td><input class='btn btn-primary' type='button' value='submit' onclick='submitMe()'></td></tr>";
+							echo "<tr><td></td><td><input class='btn btn-primary' type='button' value='submit' onclick='submitMe()'></td></tr>";
 								echo "</table>";      
 					}
 					
@@ -1017,10 +1017,11 @@
 							          </tr>
 							       ";
     				
-    						 $sql="SELECT avg(score) as score,pk_number FROM tblscore JOIN tblcandidate on tblscore.fk_tblcandidate_pknumber = tblcandidate.pk_number
-												WHERE fk_tbljudge_pkname = '".$_SESSION['username']."'  group by fk_tblcandidate_pknumber
+    						 $sql="SELECT sum(score) as score,pk_number FROM tblscore JOIN tblcandidate on tblscore.fk_tblcandidate_pknumber = tblcandidate.pk_number
+												WHERE fk_tbljudge_pkname = '".$_SESSION['username']."'  AND fk_category_pkcategory = '".$conCategory."' 
+												group by fk_tblcandidate_pknumber
 												 ORDER BY score DESC";
-												 
+												// echo $sql;
 							  	$makeArrayRanks=makeArrayRank($sql);
     			
     						while($recordSet=mysqli_fetch_array($result))
